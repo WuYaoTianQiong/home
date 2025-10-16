@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的项目集 - 吴帅的个人作品展示</title>
+    <title>项目导航展示</title>
     <!-- 引入外部资源 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -97,6 +97,203 @@
             text-align: left;
             border-top-width: 4px;
             height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 模态框样式 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: #ffffff;
+            border-radius: 1.25rem;
+            padding: 2.5rem 2rem;
+            max-width: 90vw;
+            max-height: 90vh;
+            width: 360px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: scale(0.9);
+            transition: transform 0.3s ease-in-out;
+            text-align: center;
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-header {
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #303133;
+            margin-bottom: 0.5rem;
+        }
+        
+        .modal-subtitle {
+            font-size: 0.875rem;
+            color: #909399;
+            font-weight: 400;
+        }
+        
+        .qr-image-container {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .qr-image {
+            width: 260px;
+            height: 260px;
+            object-fit: contain;
+            border-radius: 0.75rem;
+            background: transparent;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+        }
+        
+        .modal-btn {
+            flex: 1;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            border: 1px solid;
+            letter-spacing: normal;
+        }
+        
+        /* Element UI 风格按钮 */
+        .modal-btn-primary {
+            background-color: #409eff;
+            color: #ffffff;
+            border-color: #409eff;
+        }
+        
+        .modal-btn-primary:hover {
+            background-color: #66b1ff;
+            border-color: #66b1ff;
+        }
+        
+        .modal-btn-primary:active {
+            background-color: #3a8ee6;
+            border-color: #3a8ee6;
+        }
+        
+        .modal-btn-secondary {
+            background-color: #ffffff;
+            color: #606266;
+            border-color: #dcdfe6;
+        }
+        
+        .modal-btn-secondary:hover {
+            background-color: #ecf5ff;
+            color: #409eff;
+            border-color: #c6e2ff;
+        }
+        
+        .modal-btn-secondary:active {
+            background-color: #f2f6fc;
+            color: #409eff;
+            border-color: #c6e2ff;
+        }
+        
+        .dark-mode .modal-content {
+            background: #1d1e23;
+        }
+        
+        .dark-mode .modal-title {
+            color: #e4e7ed;
+        }
+        
+        .dark-mode .modal-subtitle {
+            color: #909399;
+        }
+        
+        .dark-mode .qr-image-container {
+            background: transparent;
+            border: none;
+        }
+        
+        .dark-mode .modal-btn-primary {
+            background-color: #409eff;
+            border-color: #409eff;
+        }
+        
+        .dark-mode .modal-btn-primary:hover {
+            background-color: #66b1ff;
+            border-color: #66b1ff;
+        }
+        
+        .dark-mode .modal-btn-secondary {
+            background-color: #2b2d33;
+            color: #c0c4cc;
+            border-color: #4c4d52;
+        }
+        
+        .dark-mode .modal-btn-secondary:hover {
+            background-color: #303133;
+            color: #409eff;
+            border-color: #409eff;
+        }
+        
+        /* Element UI暗色模式提示 */
+        @media (prefers-color-scheme: dark) {
+            .modal-content[style*="background-color: #67c23a"] {
+                background-color: #529b2e !important;
+                border-color: #4a8c2a !important;
+            }
+        }
+        
+        /* Element UI风格提示动画 */
+        @keyframes slideDownFade {
+            0% { 
+                opacity: 0; 
+                transform: translateX(-50%) translateY(-20px); 
+            }
+            15% { 
+                opacity: 1; 
+                transform: translateX(-50%) translateY(0); 
+            }
+            85% { 
+                opacity: 1; 
+                transform: translateX(-50%) translateY(0); 
+            }
+            100% { 
+                opacity: 0; 
+                transform: translateX(-50%) translateY(-20px); 
+            }
+        }
+        .dark-mode .modal-btn-secondary:hover {
+            background: linear-gradient(135deg, #475569, #4B5563);
         }
         
         .card-header {
@@ -268,11 +465,13 @@
         .tag-tool { background-color: rgba(123, 97, 255, 0.1); color: #7B61FF; }
         .tag-education { background-color: rgba(54, 211, 153, 0.1); color: #36D399; }
         .tag-utility { background-color: rgba(251, 189, 35, 0.1); color: #FBBD23; }
+        .tag-miniprogram { background-color: rgba(255, 107, 107, 0.1); color: #FF6B6B; }
         
         .dark-mode .tag-web { background-color: rgba(96, 165, 250, 0.1); color: #60A5FA; }
         .dark-mode .tag-tool { background-color: rgba(167, 139, 250, 0.1); color: #A78BFA; }
         .dark-mode .tag-education { background-color: rgba(52, 211, 153, 0.1); color: #34D399; }
         .dark-mode .tag-utility { background-color: rgba(251, 191, 36, 0.1); color: #FBBF24; }
+        .dark-mode .tag-miniprogram { background-color: rgba(251, 113, 133, 0.1); color: #FB7185; }
     </style>
 </head>
 <body class="font-inter bg-light bg-pattern min-h-screen">
@@ -289,9 +488,9 @@
 
     <!-- 头部区域 -->
     <header class="py-12 px-4 sm:px-6 lg:px-8 text-center animate-fade-in">
-        <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-gradient mb-3">我的项目集</h1>
+        <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-gradient mb-3">项目导航</h1>
         <p class="text-gray-600 text-[clamp(1rem,2vw,1.2rem)] max-w-2xl mx-auto">
-            展示我开发的实用工具和网页应用，点击卡片直接访问项目网站
+            展示个人开发的实用工具和网页、小程序应用，点击卡片直接访问项目网站。
         </p>
     </header>
 
@@ -318,25 +517,8 @@
                         一站式新电脑装机必备软件集合，包含系统工具、驱动管理、办公软件等各类实用工具推荐，帮助用户快速完成电脑配置。
                     </p>
                     <div class="card-footer">
-                        <span class="project-tag tag-tool">工具类</span>
+                        <span class="project-tag tag-web">在线网页</span>
                         <a href="https://win.wushuai.xyz/" target="_blank" rel="noopener" class="visit-btn">
-                            访问网站 <i class="fa fa-external-link ml-1"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- PDF在线编辑 -->
-                <div class="project-card border-secondary card-hover">
-                    <div class="card-header">
-                        <i class="fa fa-file-pdf-o text-secondary card-icon"></i>
-                        <h3 class="card-title">PDF在线编辑</h3>
-                    </div>
-                    <p class="card-desc">
-                        功能强大的在线PDF编辑工具，支持PDF合并、分割、压缩、转换、编辑文字、添加水印等多种操作，无需安装软件。
-                    </p>
-                    <div class="card-footer">
-                        <span class="project-tag tag-utility">实用工具</span>
-                        <a href="https://pdf.wushuai.xyz/" target="_blank" rel="noopener" class="visit-btn">
                             访问网站 <i class="fa fa-external-link ml-1"></i>
                         </a>
                     </div>
@@ -352,10 +534,45 @@
                         专为英语学习设计的在线点读工具，支持文本朗读、发音练习、单词学习等功能，帮助用户提升英语听说能力。
                     </p>
                     <div class="card-footer">
-                        <span class="project-tag tag-education">教育学习</span>
+                        <span class="project-tag tag-web">在线网页</span>
                         <a href="http://english.wushuai.xyz/" target="_blank" rel="noopener" class="visit-btn">
                             访问网站 <i class="fa fa-external-link ml-1"></i>
                         </a>
+                    </div>
+                </div>
+
+                
+                <!-- PDF在线编辑 -->
+                <div class="project-card border-secondary card-hover">
+                    <div class="card-header">
+                        <i class="fa fa-file-pdf-o text-secondary card-icon"></i>
+                        <h3 class="card-title">PDF在线编辑</h3>
+                    </div>
+                    <p class="card-desc">
+                        功能强大的在线PDF编辑工具，支持PDF合并、分割、压缩、转换、编辑文字、添加水印等多种操作，无需安装软件。
+                    </p>
+                    <div class="card-footer">
+                        <span class="project-tag tag-web">在线网页</span>
+                        <a href="http://pdf.wushuai.xyz/" target="_blank" rel="noopener" class="visit-btn">
+                            访问网站 <i class="fa fa-external-link ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 等会吃啥呀 -->
+                <div class="project-card border-accent card-hover">
+                    <div class="card-header">
+                        <i class="fa fa-cutlery text-accent card-icon"></i>
+                        <h3 class="card-title">等会吃啥呀</h3>
+                    </div>
+                    <p class="card-desc">
+                        微信小程序，采用盲盒抽取的方式帮助用户决策等会吃什么。解决"选择困难症"，让每次用餐决策变得有趣又简单，再也不用为吃什么而烦恼。
+                    </p>
+                    <div class="card-footer">
+                        <span class="project-tag tag-miniprogram">小程序</span>
+                        <button onclick="showQRCodeModal('等会吃啥呀')" class="visit-btn">
+                            查看二维码 <i class="fa fa-qrcode ml-1"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -378,6 +595,27 @@
             </div>
         </div>
     </footer>
+
+    <!-- 二维码模态框 -->
+    <div id="qrModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">小程序二维码</h3>
+                <p class="modal-subtitle">微信扫码体验小程序</p>
+            </div>
+            <div class="qr-image-container">
+                <img id="modalQRImage" src="" alt="小程序二维码" class="qr-image">
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-secondary" onclick="copyAppName()">
+                    复制名称
+                </button>
+                <button class="modal-btn modal-btn-primary" onclick="closeQRCodeModal()">
+                    关闭
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- JavaScript功能 -->
     <script>
@@ -430,6 +668,98 @@
             
             document.querySelectorAll('.section-animate').forEach(section => {
                 observer.observe(section);
+            });
+            
+            // 显示二维码模态框
+            window.showQRCodeModal = function(appName) {
+                const modal = document.getElementById('qrModal');
+                const modalTitle = document.getElementById('modalTitle');
+                const modalQRImage = document.getElementById('modalQRImage');
+                
+                // 设置模态框内容
+                modalTitle.textContent = appName;
+                modalQRImage.src = '等会吃啥呀.png';
+                modalQRImage.alt = appName + '小程序二维码';
+                
+                // 显示模态框
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // 防止背景滚动
+            };
+            
+            // 关闭二维码模态框
+            window.closeQRCodeModal = function() {
+                const modal = document.getElementById('qrModal');
+                modal.classList.remove('active');
+                document.body.style.overflow = ''; // 恢复背景滚动
+            };
+            
+            // 复制小程序名称（企业级功能）
+            window.copyAppName = function() {
+                const appName = document.getElementById('modalTitle').textContent;
+                navigator.clipboard.writeText(appName).then(() => {
+                    // 显示复制成功提示
+                    showCopySuccess(appName);
+                }).catch(() => {
+                    // 兼容性处理
+                    const textArea = document.createElement('textarea');
+                    textArea.value = appName;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    showCopySuccess(appName);
+                });
+            };
+            
+            // 显示复制成功提示
+            window.showCopySuccess = function(appName) {
+                // 创建临时提示元素 - Element UI风格
+                const toast = document.createElement('div');
+                toast.innerHTML = `
+                    <div style="
+                        position: fixed;
+                        top: 20px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background-color: #67c23a;
+                        color: white;
+                        padding: 0.875rem 1.5rem;
+                        border-radius: 0.5rem;
+                        font-weight: 500;
+                        z-index: 2000;
+                        box-shadow: 0 4px 12px rgba(103, 194, 58, 0.4);
+                        animation: fadeInOut 2s ease-in-out;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        min-width: 280px;
+                        justify-content: center;
+                        border: 1px solid #5daf34;
+                    ">
+                        <i class="fa fa-check-circle" style="font-size: 1.125rem;"></i>
+                        <span>已复制：${appName}</span>
+                    </div>
+                `;
+                document.body.appendChild(toast);
+                
+                // 2秒后自动移除
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 2000);
+            };
+            
+            // 点击模态框外部关闭
+            document.getElementById('qrModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeQRCodeModal();
+                }
+            });
+            
+            // ESC键关闭模态框
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeQRCodeModal();
+                }
             });
         });
     </script>
