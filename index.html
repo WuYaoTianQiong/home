@@ -474,7 +474,7 @@
         .dark-mode .tag-miniprogram { background-color: rgba(251, 113, 133, 0.1); color: #FB7185; }
     </style>
 </head>
-<body class="font-inter bg-light bg-pattern min-h-screen">
+<body class="font-inter bg-light bg-pattern min-h-screen flex flex-col">
     <!-- 光明/黑暗模式切换按钮 -->
     <button id="themeToggle" class="theme-toggle" title="切换主题">
         <i class="fa fa-sun-o"></i>
@@ -495,7 +495,7 @@
     </header>
 
     <!-- 主内容区域 -->
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 pb-16 flex-grow">
         <!-- 1. 实用工具板块 -->
         <section class="mb-12 section-animate" style="animation-delay: 0.1s">
             <div class="flex items-center mb-6">
@@ -579,7 +579,7 @@
     </main>
 
     <!-- 页脚区域 -->
-    <footer class="bg-dark text-white py-8">
+    <footer class="bg-dark text-white py-8 mt-auto">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <p class="text-gray-400">
                 © 2025 大帅哥的个人项目集 | 持续更新中
